@@ -1,0 +1,160 @@
+.navbar {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    background-color: white;
+    box-shadow: 0px 1px 3px 1px var(--secondary-box-shadow);
+}
+.logoDiv{
+    flex: 4;
+}
+.LogoHead>img {
+    height: 40px;
+    width: 40px;
+    margin-left: 65px;
+    position: absolute;
+}
+
+.LogoHead h2 {
+    font-size: 2rem;
+    margin-left: 100px;
+    color: #6161dd;
+    font-weight: bold;
+    cursor: default;
+}
+
+.middleContainer {
+    flex: 4;
+    height: 40px;
+    background-color: #eeeef9;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.middleContainer:hover {
+    background-color: #e5e5f5;
+}
+
+.searchIcon {
+    height: 25px !important;
+    width: 25px !important;
+    margin-left: 10px;
+    color: #559;
+    cursor: pointer;
+}
+
+.middleContainer input {
+    width: 90%;
+    margin-left: 3px;
+    background-color: transparent;
+    color: #559;
+    font-size: 18px;
+}
+
+.middleContainer input:focus {
+    outline: none;
+}
+
+.rightContainer {
+    flex: 4;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+}
+
+.rightContainerItem {
+    margin-left: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #eeeef9;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.rightContainerIcon {
+    color: #6161dd;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.rightContainerItem:hover {
+    background-color: #e5e5f5;
+}
+
+.rightContainerItem>span {
+    height: 16px;
+    width: 17px;
+    border-radius: 50px;
+    background-color: red;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding-top: 2px;
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 35px;
+    margin-left: 35px;
+}
+
+.profileContainer {
+    position: absolute;
+    top: 65px;
+    margin-right: 230px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    display: none;
+}
+
+.profileContainer div {
+    margin: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 1px 10px 2px #bbc;
+}
+
+.profileIcon {
+    pointer-events: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.profileContainer li {
+    display: flex;
+    align-items: center;
+    height: 65px;
+    padding: 0 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    border-radius: 8px;
+}
+
+.profileContainer li:hover {
+    background-color: var(--hover-color);
+    transition: 0.2s ease-in-out;
+}
+
+.profileContainer span {
+    margin-left: 10px;
+}
+
+.profileContainerIcon {
+    background-color: transparent !important;
+    color: #6161dd !important;
+    width: 38px !important;
+    height: 38px !important;
+}

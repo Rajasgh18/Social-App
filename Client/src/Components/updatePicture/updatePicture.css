@@ -1,0 +1,36 @@
+.updatePictureWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border-radius: 8px;
+    background-color: #ebebff;
+    align-items: center;
+    padding-bottom: 10px;
+    animation: editBox 0.5s 1;
+}
+
+@keyframes editBox {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.updateImageBtn {
+    width: 180px;
+    margin-top: 10px;
+    padding: 8px 0px;
+    border-radius: 8px;
+    color: #559;
+    background-color: #ddf;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.updateImageBtn:hover {
+    background-color: #cce;
+}

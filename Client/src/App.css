@@ -1,0 +1,39 @@
+* {
+  font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  font-weight: 500;
+}
+
+body {
+  background-color: var(--secondary-background);
+}
+
+body::-webkit-scrollbar {
+  width: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #6161dd;
+  border-radius: 10px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+}
+
+body::-webkit-scrollbar-track {
+  background: #ddf;
+}
+
+:root {
+  /*Variables for text*/
+  --text-color: #559;
+  --text-secondary-color: #77a;
+
+  /* Variables for Background */
+  --primary-background: #eef;
+  --secondary-background: #fff;
+  --chat-mesg-background: #dadaff;
+  --secondary-box-shadow: #bbd;
+
+  /* Variables for different hover state */
+  --hover-color: #eaeafa;
+  --hover-feed-color: #eaeafa;
+}

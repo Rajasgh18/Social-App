@@ -1,0 +1,92 @@
+.messenger {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 1%;
+}
+
+.messengerWrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.friendsContainer {
+    position: fixed;
+    border-radius: 6px;
+    background-color: var(--primary-background);
+    box-shadow: 0px 0px 10px 0px var(--secondary-box-shadow);
+    height: 85%;
+    margin-left: 16%;
+    width: 65%;
+    margin-top: 20px;
+    display: flex;
+}
+
+.friendList {
+    width: 28%;
+    height: 100%;
+    border-right: 2px solid #ccf;
+}
+
+.friendHeader {
+    width: 100%;
+    height: 11%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ccf;
+}
+
+.friendHeader h2 {
+    font-size: 25px;
+    color: var(--text-color);
+}
+
+.friendListContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+}
+
+.chatFriend {
+    cursor: pointer;
+}
+
+.chatFriend:hover {
+    background-color: var(--hover-color);
+}
+
+.chatSection {
+    width: 72%;
+    ;
+    height: 100%;
+}
+
+.noChatDesc {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.noChatDesc h2 {
+    font-size: 30px;
+    color: var(--text-color);
+}
+
+.noChatDesc span {
+    font-size: 20px;
+    color: var(--text-secondary-color);
+}
+
+.noChatIcon {
+    width: 150px !important;
+    height: 150px !important;
+    fill: var(--text-color);
+}

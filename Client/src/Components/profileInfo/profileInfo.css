@@ -1,0 +1,98 @@
+.profileInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profileInfoContainer {
+    width: 65%;
+    display: flex;
+    padding: 0;
+    margin-left: 5%;
+}
+
+.profileInfoLeft {
+    width: 50%;
+    margin-right: 20px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileInfoLeftTop {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-background);
+    box-shadow: 0 0 3px 1px var(--secondary-box-shadow);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileInfoLeftTop h2,
+.profileInfoLeftBottom h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.profileInfoPersonel {
+    font-size: 20px;
+    color: var(--text-color);
+    margin: 5px;
+}
+
+.profileInfoIcon {
+    color: #6161dd;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.profileInfoLeftTop button {
+    background-color: #eeeef9;
+    padding: 10px 0px;
+    font-size: 18px;
+    border-radius: 8px;
+    margin: 10px 0px;
+    color: #559;
+    font-weight: 500;
+}
+
+.profileInfoLeftTop button:hover {
+    background-color: #e5e5f5;
+}
+
+.profileInfoPersonel span {
+    margin-left: 5px;
+}
+
+.profileInfoLeftBottom {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: var(--primary-background);
+    box-shadow: 0 0 3px 1px var(--secondary-box-shadow);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileInfoLeftBottom>span {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profileInfoFriends {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-rows: 130px;
+    gap: 12px;
+
+}
+
+.profileInfoRight {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

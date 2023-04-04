@@ -1,0 +1,221 @@
+.profileImages {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profileImagesWrapper {
+    width: 100%;
+    background-color: var(--primary-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    box-shadow: 0 0 3px 1px var(--secondary-box-shadow);
+}
+
+.profileCover {
+    margin-top: 20px;
+    margin-left: 5%;
+    width: 75%;
+    background-image: linear-gradient(to bottom, #EEE, #CCC);
+    height: 550px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.profileCover>img {
+    position: absolute;
+    border-bottom-left-radius: 12px;
+    object-fit: cover;
+    border-bottom-right-radius: 12px;
+    width: 75%;
+    height: 100%;
+
+}
+
+.profileCoverBtn {
+    z-index: 2;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    height: 45px;
+    color: #559;
+    background-color: #eeeef9;
+    width: 200px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.profileCoverBtn:hover {
+    background-color: #e5e5f5;
+}
+
+.profileCoverIcon {
+    pointer-events: none;
+    width: 25px !important;
+    height: 25px !important;
+    color: #6161dd;
+    margin-right: 8px;
+}
+
+.profileBottom {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #559;
+    margin-left: 5%;
+}
+
+.profileBottomLeft {
+    display: flex;
+}
+
+.profileImage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    color: #559;
+    align-items: center;
+    justify-content: center;
+    bottom: 40px;
+    margin-right: 20px;
+    background-color: #fff;
+    border: 2px solid #fff;
+}
+
+.profileImage img {
+    border: 2px solid #fff;
+    width: 195px;
+    height: 195px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileImageCameraBtn {
+    z-index: 1;
+    position: absolute;
+    background-color: #eeeef9;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+    margin-left: 140px;
+    cursor: pointer;
+}
+
+.profileImageCameraBtn:hover {
+    background-color: #e5e5f5;
+}
+
+.profileIcon {
+    pointer-events: none;
+    color: #6161dd;
+    cursor: pointer;
+}
+
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.profileDetails h1 {
+    font-size: 36px;
+    font-weight: bolder;
+    color: var(--text-color);
+}
+
+.profileDetails span {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-secondary-color);
+}
+
+.profileFriends {
+    display: flex;
+
+}
+
+.profileDetails img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    object-fit: cover;
+}
+
+.profileBottomRight {
+    display: flex;
+}
+
+.profileBottomRightBtns {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    justify-content: flex-end;
+}
+
+.addStoryBtn {
+    padding: 8px 20px;
+    font-weight: 600;
+    color: white;
+    border-radius: 8px;
+    background-color: #0088ff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.addStoryBtn span {
+    margin-left: 5px;
+}
+
+.addStoryBtn:hover {
+    background-color: #0099ff;
+}
+
+.editProfileBtn {
+    margin-left: 10px;
+    padding: 8px 20px;
+    font-weight: 600;
+    color: #559;
+    border-radius: 8px;
+    background-color: #eeeef9;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.editProfileBtn span {
+    margin-left: 5px;
+}
+
+.editProfileBtn:hover {
+    background-color: #e5e5f5;
+}
+
+#updateMenuProfile {
+    z-index: 3;
+    display: none;
+    margin-top: 170px;
+    position: absolute;
+}
+
+#updateMenuCover {
+    z-index: 3;
+    display: none;
+    margin-top: 170px;
+    position: absolute;
+}

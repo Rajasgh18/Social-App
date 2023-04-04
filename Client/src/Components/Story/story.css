@@ -1,0 +1,8 @@
+.storyWrapper {
+    width: 130px;
+    height: 215px;
+    background-color: #dde;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-right: 10px;
+}

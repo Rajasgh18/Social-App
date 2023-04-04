@@ -1,0 +1,49 @@
+.messageBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.mainUserMessages {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userMessages {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mainUserMessages p,
+.userMessages p {
+    max-width: 400px;
+    padding: 12px 20px;
+    color: var(--text-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--chat-mesg-background);
+}
+
+.mainUserMessages img {
+    margin-left: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.userMessages img {
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.messageBox span {
+    margin: 10px 5px;
+    font-size: 14px;
+    color: var(--text-secondary-color);
+}
