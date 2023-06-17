@@ -8,7 +8,7 @@ export default function Message({ message, own, user }) {
 
   const { mainUser } = useContext(userContext);
   const { profilePicture } = mainUser;
-  const userPic = profilePicture ? require(`../../../public/Assets/Posts/${own ? profilePicture : user.profilePicture}`) : "userIcon.webp";
+  const userPic = profilePicture ? `../../../public/Assets/Posts/${own ? profilePicture : user.profilePicture}` : "userIcon.webp";
 
   let date = new Date(message.createdAt);
 

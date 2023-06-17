@@ -26,7 +26,7 @@ export default function ChatArea({ currChat }) {
     const socket = useRef();
     const scrollRef = useRef();
 
-    const profilePic = currUser.profilePicture ? require(`../../../public/Assets/Posts/${currUser.profilePicture}`) : "userIcon.webp";
+    const profilePic = currUser.profilePicture ? `/Assets/Posts/${currUser.profilePicture}` : "userIcon.webp";
 
     //Fetches the message from socket for instant message sending and receiving.
     useEffect(()=>{

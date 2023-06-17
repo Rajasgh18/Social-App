@@ -1,7 +1,6 @@
 .share {
-    margin-top: 15px;
     padding: 10px 15px;
-    width: 40%;
+    width: 50%;
     background-color: var(--primary-background);
     box-shadow: 0px 0px 10px 0px var(--secondary-box-shadow);
     display: flex;
@@ -105,7 +104,7 @@
 .shareBtn {
     width: 100px;
     height: 35px;
-    background-color: #0c0;
+    background-color: #0c0  ;
     border-radius: 6px;
     color: #fff;
 }

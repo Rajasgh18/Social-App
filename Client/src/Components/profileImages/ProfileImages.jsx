@@ -19,10 +19,9 @@ export default function ProfileImages() {
   const { mainUser, user } = useContext(userContext);
 
   const currUser = userId === id ? mainUser : user;
-  const { username, followers, profilePicture, coverPicture } = currUser;
-  
-  const profilePic = require(`../../../public/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`);
-  const coverPic = coverPicture ? require(`../../../public/Assets/Posts/${coverPicture}`) : "null";
+  const { name, followers, profilePicture, coverPicture } = currUser;
+  const profilePic = `/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`;
+  const coverPic = coverPicture ? `/Assets/Posts/${coverPicture}` : "null";
 
   //Update function for cover.
   const updateCover = () => {
@@ -71,7 +70,7 @@ export default function ProfileImages() {
               </div>
             </div>
             <div className="profileDetails">
-              <h1>{username}</h1>
+              <h1>{name}</h1>
               <span>{followers?.length} Friends</span>
               <div className='profileFriends'>
               </div>

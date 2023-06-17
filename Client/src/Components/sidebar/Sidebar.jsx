@@ -11,97 +11,73 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import React, { useContext } from 'react';
 import userContext from '../../Context/UserContext/userContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
 
     const userId = localStorage.getItem('userId')
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
 
     const { mainUser } = useContext(userContext)
-    const { username, profilePicture } = mainUser;
-
-    const profileUrlChecker = window.location.href.indexOf("profile") !== -1;
-    const messageUrlChecker = window.location.href.indexOf("messages") !== -1;
-    const profilePic = profilePicture ? require(`../../../public/Assets/Posts/${profilePicture}`) : "userIcon.webp";
+    const { name, profilePicture } = mainUser;
+    const location = useLocation().pathname;
+    const profileUrlChecker = useLocation().pathname.includes('/profile');
+    const messageUrlChecker = useLocation().pathname.includes('/messages');
+    const profilePic = profilePicture ? `/Assets/Posts/${profilePicture}` : "/Assets/Posts/userIcon.webp";
 
     //Takes to home page.
-    const handleHome = (e) => {
-        navigate('/');
-        const activeBox = document.getElementById('activeDisplayer');
-        const sideBarBtns = document.getElementsByClassName('sideWrapperItems');
-        const arr = [...sideBarBtns];
-        arr.forEach(container => {
-            if (!container.contains(activeBox)) {
-                container.appendChild(activeBox);
-            }
-        })
-    }
-
-    const handleClick = (e) => {
-        const activeBox = document.getElementById('activeDisplayer');
-        const sideBarBtns = document.getElementsByClassName('sideWrapperItems');
-        const arr = [...sideBarBtns];
-        arr.forEach(container => {
-            if (container.id === e.target.id) {
-                container.appendChild(activeBox);
-            }
-        })
-    }
-
-    //Takes to profile page.
-    const handleProfile = (e) => {
-        navigate(`/profile/${userId}`);
-        const activeBox = document.getElementById('activeDisplayer');
-        const sideBarBtns = document.getElementsByClassName('sideWrapperItems');
-        const arr = [...sideBarBtns];
-        arr.forEach(container => {
-            if (container.id === e.target.id) {
-                container.appendChild(activeBox);
-            }
-        })
+    const handleNavigation = (e)=>{
+        e.target.id === "profile" ? Navigate(`/profile/${userId}`) : Navigate(`/${e.target.id}`)
     }
 
     return (
         <div className={` sidebar ${profileUrlChecker ? "sideBarProfile" : ""} ${messageUrlChecker ? "sideBarMessages" : ""}`}>
             <div className="sideWrapper" style={profileUrlChecker ? { overflowY: "visible" } : {}}>
                 <ul>
-                    <li id='Home' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}} onClick={handleHome}>
-                        <span id='activeDisplayer'></span>
+                    <li id='' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}} onClick={handleNavigation}>
+                        {location === '/' && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <HomeIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Home</span>
                     </li>
-                    <li id='Profile' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}} onClick={handleProfile}>
+                    <li id='profile' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}} onClick={handleNavigation}>
+                    {location.includes('/profile') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <img src={profilePic} alt="" className='sideWrapperIcon' />
-                        <span className={profileUrlChecker ? 'displayText' : ""}  >{username}</span>
+                        <span className={profileUrlChecker ? 'displayText' : ""}  >{name}</span>
                     </li>
                     <hr className='sideWrapperLine' style={profileUrlChecker ? { margin: "10px 0px 10px 20px" } : {}} />
-                    <li onClick={handleClick} id='Friends' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='friends' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/friends') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <GroupIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Friends</span>
                     </li>
-                    <li onClick={handleClick} id='Most recent' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='most-recent' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/most-recent') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <EventNoteIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Most recent</span>
                     </li>
-                    <li onClick={handleClick} id='Groups' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='groups' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/groups') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <GroupsIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Groups</span>
                     </li>
-                    <li onClick={handleClick} id='Marketplace' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='marketplace' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/marketplace') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <StoreIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Marketplace</span>
                     </li>
-                    <li onClick={handleClick} id='Watch' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='watch' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/watch') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <OndemandVideoIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Watch</span>
                     </li>
-                    <li onClick={handleClick} id='See all' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='see-all' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/see-all') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <DashboardCustomizeIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >See all</span>
                     </li>
                     <hr className='sideWrapperLine' style={profileUrlChecker ? { margin: "10px 0 10px 20px" } : {}} />
-                    <li onClick={handleClick} id='Games' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                    <li onClick={handleNavigation} id='games' className="sideWrapperItems" style={profileUrlChecker ? { borderRadius: "8px" } : {}}>
+                        {location.includes('/games') && <span className='absolute bg-[#6161dd] -left-4 w-3 rounded-tr-md rounded-br-md h-12 mb-1'></span>}
                         <AddBoxIcon className='sideWrapperIcon' />
                         <span className={profileUrlChecker ? 'displayText' : ""}  >Games</span>
                     </li>

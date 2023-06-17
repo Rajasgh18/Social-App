@@ -20,8 +20,8 @@ function Navbar() {
     const navigate = useNavigate();
 
     const { mainUser, mode, setMode } = useContext(userContext);
-    const { profilePicture, username } = mainUser;
-    const profilePic = profilePicture ? require(`../../../public/Assets/Posts/${profilePicture}`) : "userIcon.webp";
+    const { profilePicture, name } = mainUser;
+    const profilePic = profilePicture ? `/Assets/Posts/${profilePicture}` : "/Assets/Posts/userIcon.webp";
 
     //Logout function which token and userId from the localstorage.
     const handleClick = () => {
@@ -78,7 +78,7 @@ function Navbar() {
         <div className='navbar' style={navBack}>
             <div className='logoDiv'>
                 <Link className='LogoHead' to="/">
-                    <img src={require('./k.png')} alt="" />
+                    <img src='/k.png' alt="" />
                     <h2 style={navHead}>ingbook</h2>
                 </Link>
             </div>
@@ -96,7 +96,7 @@ function Navbar() {
                         <div style={navBack} >
                             <li>
                                 <img className='profileIcon' alt='' src={profilePic} />
-                                <span>{username}</span>
+                                <span>{name}</span>
                             </li>
                             <li>
                                 <SettingsIcon style={navIcon} className='profileContainerIcon' />

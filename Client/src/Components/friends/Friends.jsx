@@ -14,7 +14,7 @@ export default function Friends({ user }) {
     const [currUser, setCurrUser] = useState("");
     const { profilePicture, username } = currUser;
 
-    const profilePic = require(`../../../public/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`);
+    const profilePic = `/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`;
 
     const profileUrlChecker = window.location.href.indexOf("profile") !== -1;
     const messageUrlChecker = window.location.href.indexOf("messages") !== -1;

@@ -17,7 +17,7 @@ Router.post("/", upload.single('file'), async (req, res) => {
     try {
         const newPost = await new Post(req.body);
         await newPost.save();
-        res.status(200).send("Post saved successfully!");
+        res.status(200).json(newPost);
     } catch (error) {
         res.status(500).send("Internal Server Error!");
         console.error(error.message);

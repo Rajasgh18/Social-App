@@ -16,11 +16,10 @@ export default function Post(props) {
     let { desc, createdAt, img, likes, comment, userId } = props.post;
     let date = new Date(createdAt);
     const [liked, setLiked] = useState(likes.length);
-    const photos = require(`../../../public/Assets/Posts/${img}`);
+    const photos = `/Assets/Posts/${img}`;
 
     const [user, setUser] = useState("");
-
-    const profilePic = user.profilePicture ? require(`../../../public/Assets/Posts/${user.profilePicture}`) : "userIcon.webp";
+    const profilePic = user.profilePicture ? `/Assets/Posts/${user.profilePicture}` : "/Assets/Posts/userIcon.webp";
     const profileUrlChecker = window.location.href.indexOf("profile") !== -1;
 
     //Function for like.
@@ -52,7 +51,7 @@ export default function Post(props) {
             <div className='postTop'>
                 <div className="postTopLeft">
                     <Link to={`profile/${userId}`}><img src={profilePic} alt="" className='postProfile' /></Link>
-                    <span className="postUsername" >{user.username}</span>
+                    <span className="postUsername" >{user.name}</span>
                     <span className="postDate" >{format(date)}</span>
                 </div>
                 <div className="postTopRight">

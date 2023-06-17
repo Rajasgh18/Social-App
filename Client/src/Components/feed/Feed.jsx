@@ -10,14 +10,17 @@ import Post from '../post/Post';
 
 import postContext from '../../Context/PostContext/postContext';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import userContext from '../../Context/UserContext/userContext';
-import Loader from '../loader/Loader';
+import { TailSpin } from 'react-loader-spinner';
+import axios from 'axios';
 
 function Feed() {
-    const { posts, getTimeline } = useContext(postContext);
-    const { mainUser } = useContext(userContext);
+    const { posts, setPosts, getTimeline } = useContext(postContext);
+    const { mainUser, mode, host } = useContext(userContext);
     const { followers } = mainUser;
+    const [isLoader, setIsLoader] = useState(true);
+    const userId = localStorage.getItem('userId');
 
     //Sorts the message according to time.
     for (let i = 0; i < posts.length - 1; i++) {
@@ -52,8 +55,16 @@ function Feed() {
 
     //Fetches all the post of friends.
     useEffect(() => {
-        getTimeline();
-        // eslint-disable-next-line
+        const fetchPosts = async () => {
+            try {
+                const res = await axios.get(`${host}/api/posts/timeline/${userId}`);
+                setPosts(res.data);
+                setIsLoader(false);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchPosts();
     }, []);
 
     return (
@@ -71,9 +82,9 @@ function Feed() {
                 </div>
             </div>
             <Share />
-            {posts.length !== 0 ? posts.map((f) => {
+            {!isLoader ? posts.length !== 0 ? posts.map((f) => {
                 return <Post key={f._id} post={f} />
-            }) : <Loader/> } 
+            }) : <div className={`my-4 text-lg ${mode === "light" ? "text-slate-700" : "text-white"}`}>No Posts Available</div> : <div className='h-full w-full flex justify-center my-10'><TailSpin color={mode === "light" ? "blue" : "white"} width={60} height={60} /></div>}
         </div>
     );
 }

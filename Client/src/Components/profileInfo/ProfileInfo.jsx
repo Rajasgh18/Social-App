@@ -12,24 +12,24 @@ import Friends from '../friends/Friends';
 import userContext from '../../Context/UserContext/userContext';
 import postContext from '../../Context/PostContext/postContext';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Loader from '../loader/Loader';
+import { TailSpin } from 'react-loader-spinner';
 
 export default function ProfileInfo() {
 
   const userId = localStorage.getItem('userId');
   const { id } = useParams();
 
-
-  const { mainUser, user } = useContext(userContext);
-  const { posts, getTimeline } = useContext(postContext)
+  const [isLoader, setIsLoader] = useState(false);
+  const { mainUser, user, mode } = useContext(userContext);
+  const { posts, setPosts } = useContext(postContext)
 
   const currUser = userId === id ? mainUser : user;
-  
+
   const userPosts = [];
   posts.forEach(e => {
-    if(e.userId === id)
+    if (e.userId === id)
       userPosts.push(e)
   })
 
@@ -41,16 +41,22 @@ export default function ProfileInfo() {
 
   //Fetches all the users posts.
   useEffect(() => {
-    getTimeline();
-  }, [followers]);
+    const fetchPosts = async () => {
+      try {
+        const res = await axios.get(`${host}/api/posts/timeline/${userId}`);
+        setPosts(res.data);
+        setIsLoader(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchPosts();
+  }, []);
 
   return (
     <div className='profileInfo'>
-
       <div className='profileInfoContainer'>
-
         <div className='profileInfoLeft'>
-
           <div className='profileInfoLeftTop'>
             <h2>Intro</h2>
             <button style={id !== userId ? { display: "none" } : {}} >Add Bio</button>
@@ -85,9 +91,9 @@ export default function ProfileInfo() {
 
         <div className='profileInfoRight'>
           {userId === id ? <Share /> : ""}
-          {userPosts.length !== 0 ? userPosts.map((f) => {
-                return <Post key={f._id} post={f} />
-            }) : <Loader/> }
+          {!isLoader ? userPosts.length !== 0 ? userPosts.map((f) => {
+            return <Post key={f._id} post={f} />
+          }): <div className='w-full h-24 flex justify-center items-center text-slate-700 text-lg'>You haven't Posted yet!</div> : <div className='w-full h-40 flex justify-center items-center'><TailSpin height={60} width={60} color={mode === "light" ? "blue" : "white"} /></div>}
         </div>
       </div>
     </div>

@@ -4,15 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #bbaaff;
 }
 
 .signupWrapper {
     width: 500px;
     height: 500px;
-    background-color: #aa9aff;
     border-radius: 10px;
-    box-shadow: 0 0 5px 1px #b494c6;
+    box-shadow: 0 0 10px #aabbbb;
     color: white;
     display: flex;
     align-items: center;
@@ -29,8 +27,8 @@
 }
 
 .signupWrapper input {
-    font-size: 25px;
-    padding: 8px 10px;
+    font-size: 20px;
+    padding: 4px 8px;
     width: 100%;
     color: #9e1afe;
     margin: 10px 0;

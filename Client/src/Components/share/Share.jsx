@@ -8,21 +8,25 @@ import userContext from '../../Context/UserContext/userContext';
 import postContext from '../../Context/PostContext/postContext';
 
 import React, { useContext, useRef, useState } from 'react'
+import axios from 'axios';
 
 export default function Share() {
 
-    const { mainUser } = useContext(userContext);
-    const { createPost, uploadPost } = useContext(postContext);
+    const { mainUser, host } = useContext(userContext);
+    const { setPosts } = useContext(postContext);
+    const userId = localStorage.getItem('userId');
+
 
     const { username, profilePicture } = mainUser;
 
     const [file, setFile] = useState(null)
     const desc = useRef()
 
-    const profilePic = profilePicture ? require(`../../../public/Assets/Posts/${profilePicture}`) : "userIcon.webp";
+    const profilePic = profilePicture ? `/Assets/Posts/${profilePicture}` : "/Assets/Posts/userIcon.webp";
     const profileUrlChecker = window.location.href.indexOf("profile") !== -1;
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         //Store the description and userId.
         const newPost = {
             userId: mainUser.id,
@@ -39,17 +43,21 @@ export default function Share() {
             newPost.img = filename;
 
             //Uploads the photo and stores it in the location specified in the backend.
-            uploadPost(data);
+            try {
+                let res = await axios.post("http://localhost:5000/api/posts/upload", data);
+                console.log(res.data)
+                //Creates the post and save it in the database
+                res = await axios.post(`${host}/api/posts`, { userId, desc: newPost.desc, img: newPost.img })
+                setPosts(prev => [...prev, res.data])
+            } catch (error) {
+                console.log(error);
+            }
 
-            //Creates the post and save it in the database
-            createPost(newPost.desc, newPost.img);
-
-            window.location('reload');
         }
     }
 
     return (
-        <form className='share' style={profileUrlChecker ? { width: "100%" } : {}} onSubmit={handleSubmit}>
+        <form className='share' style={profileUrlChecker ? { width: "100%" } : { marginTop: "15px" }} onSubmit={handleSubmit}>
             <div className="shareTop">
                 <div className='shareTopItem'><img src={profilePic} alt="" className='shareTopIcon' /></div>
                 <input type="text" ref={desc} placeholder={`What's on your mind, ${username}?`} />
@@ -68,7 +76,7 @@ export default function Share() {
                     <EmojiEmotionsIcon className='shareBottomIcon emojiIcon' />
                     <span>Feeling/Activity</span>
                 </div>
-                <button type='submit' className='shareBtn'>Share</button>
+                <button type='submit' className='shareBtn bg-green-500'>Share</button>
             </div>
         </form>
     )

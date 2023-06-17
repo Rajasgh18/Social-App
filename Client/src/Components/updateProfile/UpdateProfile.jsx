@@ -4,30 +4,35 @@ import postContext from '../../Context/PostContext/postContext';
 import userContext from '../../Context/UserContext/userContext';
 
 import { useContext, useState } from 'react';
+import axios from 'axios';
 
 export default function UpdateProfile({ name }) {
 
   const [image, setImage] = useState(null);
-  const { uploadPost } = useContext(postContext);
-
-  const { updateUserProfilePicture, mainUser } = useContext(userContext);
+  const userId = localStorage.getItem('userId');
+  const { mainUser, setMainUser, host } = useContext(userContext);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (image) {
       const data = new FormData();
       const filename = Date.now() + image.name;
       data.append("name", filename);
       data.append("file", image);
-      mainUser.profilePicture = filename;
 
-      //Uploads the post and saves it in the specified location.
-      uploadPost(data);
-
-      //Updates the cover picture in the database.
-      updateUserProfilePicture(mainUser.profilePicture);
+      try {
+        //Uploads the post and saves it in the specified location.
+        //Uploads the post and saves it in the specified location.
+        let res = await axios.post(`${host}/api/posts/upload`, data);
+        //Updates the profile picture in the database.
+        res = await axios.put(`${host}/api/users/${userId}`, { userId, profilePicture: filename })
+        setMainUser({ ...mainUser, profilePicture: filename })
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-  
+
   return (
     <>
       <form onSubmit={handleSubmit} className='updateProfileWrapper'>

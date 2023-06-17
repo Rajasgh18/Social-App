@@ -19,7 +19,7 @@ export default function Profile() {
             getUser(followers[i]);
         }
         // eslint-disable-next-line
-    }, [followers.length]);
+    }, [followers]);
 
     return (
         <>

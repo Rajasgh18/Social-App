@@ -9,22 +9,21 @@ const JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
 
 //Route for Register
 Router.post('/register', [
-    body("username", "Enter a username with more than 3 characters!").isLength({ min: 3 }),
+    body("name", "Enter a username with more than 3 characters!").isLength({ min: 3 }),
     body("email", "Enter a valid username!").isEmail(),
     body("password", "Enter a password with more than 6 characters!").isLength({ min: 6 })
 ], async (req, res) => {
     try {
-        let success = false;
         //It displays error in body of request
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({success, errors: errors.array() });
+            return res.status(400).json({errors: errors.array()});
         }
 
         //It checks whether a user exists with same email or not
-        let user = User.findOne(req.body.email);
-        if (!user) {
-            return res.status(400).josn({success, error : "A User exists with this email, please choose another email!"});
+        let user = await User.findOne({email: req.body.email});
+        if (user) {
+            return res.status(400).send("A User exists with this email, please choose another email!");
         }
 
         //Generate salt and convert the password to hash
@@ -33,13 +32,13 @@ Router.post('/register', [
 
         //Create the user 
         const newUser = await new User({
-            username: req.body.username,
+            name: req.body.name,
             email: req.body.email,
             password: secPassword
         })
         const data =  {
             user : {
-                id : user.id
+                id : newUser.id
             }
         }
         const authToken = jwt.sign(data, JWT_SECRET)
@@ -47,7 +46,7 @@ Router.post('/register', [
         //Save the user in the database and send the respond
         user = await newUser.save();
         success = true;
-        res.status(200).json({success, user, authToken});
+        res.status(200).json({user, authToken});
 
     } catch (error) {
         res.status(500).send("Internal Server Error!");
@@ -59,15 +58,14 @@ Router.post('/register', [
 Router.post('/login', async(req, res) => {
 
     try{
-        let success = false;
         //Finding the user if the user exists or not
         const {email, password} = req.body;
         const user = await User.findOne({email});
-        !user && res.status(400).json({error : "There exists no user with this email!", success});
+        if(!user) return res.status(400).send("There exists no user with this email!");
         
         //Checking if the password is correct or not
         const checkPassword = await bcrypt.compare(password, user.password);
-        !checkPassword && res.status(400).json({error : "Please enter correct password!", success});
+        if(!checkPassword) return res.status(400).send("Please enter correct password!");
 
         const data = {
             user : {
@@ -77,8 +75,7 @@ Router.post('/login', async(req, res) => {
         const authToken = jwt.sign(data, JWT_SECRET);
 
         //Sending the user data after checking correct credentials
-        success = true;
-        res.json({user, success, authToken});
+        res.json({user, authToken});
     } catch(err){
         res.status(500).send("Internal Server Error!");
         console.log(err);

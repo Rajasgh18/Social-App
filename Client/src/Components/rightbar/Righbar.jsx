@@ -30,9 +30,9 @@ function Rightbar() {
             <div className={`rightbarWrapper ${mode === "dark" ? "rightbarWrapperDark" : ""}`}>
                 <div className="rightbarTop">
                     <h2 className='rightbarHeadings'>Your Friends</h2>
-                    {followers && followers.map((f) => {
+                    {followers.length !== 0 ? followers.map((f) => {
                         return <Friends key={f} user={f} />;
-                    })}
+                    }) : <span className='inactive'>No friends yet!</span>}
                     <div className="rightbarBottom">
                         <h2 className="rightbarHeadings">Active Friends</h2>
                         {onlineFriends.length !== 0 ? onlineFriends.map((f) => {

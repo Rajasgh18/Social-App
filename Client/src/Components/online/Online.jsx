@@ -9,7 +9,7 @@ export default function Online(props) {
 
     const [user, setUser] = useState("");
     const { profilePicture, username } = user;
-    const profilePic = profilePicture ? require(`../../../public/Assets/Posts/${profilePicture}`) : "userIcon.webp";
+    const profilePic = profilePicture ? `/Assets/Posts/${profilePicture}` : "userIcon.webp";
 
     //Fetches online friends details.
     useEffect(() => {

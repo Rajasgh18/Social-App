@@ -4,15 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #bbaaff;
 }
 
 .loginWrapper {
     width: 500px;
     height: 500px;
-    background-color: #aa9aff;
     border-radius: 10px;
-    box-shadow: 0 0 5px 1px #b494c6;
+    box-shadow: 0 0 10px #aabbbb;
     color: white;
     display: flex;
     align-items: center;
@@ -43,7 +41,7 @@
 
 .loginWrapper input {
     font-size: 25px;
-    padding: 8px 10px;
+    padding: 4px 8px;
     width: 100%;
     color: #9e1afe;
     margin: 10px 0;
@@ -51,7 +49,7 @@
 }
 
 .loginWrapper input:focus {
-    outline-color: #bb9aff;
+    outline: 2px solid #966ee5;
 }
 
 .loginBtn,
@@ -59,15 +57,15 @@
     display: block;
     text-align: center;
     width: 100%;
-    padding: 5px;
-    font-size: 30px;
+    padding: 4px;
+    font-size: 24px;
     margin: 10px 0;
     background-color: #9e1afe;
     border-radius: 8px;
 }
 
 .loginBtn:hover {
-    background-color: #9a00ff;
+    background-color: #8903e3;
 }
 
 .signUpBtn {
@@ -76,7 +74,7 @@
 }
 
 .signUpBtn:hover {
-    background-color: #3b3;
+    background-color: rgb(16, 178, 16);
 }
 
 .loginWrapper span {
