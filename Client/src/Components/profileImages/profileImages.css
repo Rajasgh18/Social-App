@@ -25,6 +25,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    animation: topAppear 400ms ease-in-out;
 }
 
 .profileCover>img {
@@ -66,7 +67,7 @@
 }
 
 .profileBottom {
-    width: 65%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #559;
@@ -90,6 +91,7 @@
     margin-right: 20px;
     background-color: #fff;
     border: 2px solid #fff;
+    animation: leftAppear 400ms ease-in-out;
 }
 
 .profileImage img {
@@ -168,8 +170,7 @@
 }
 
 .addStoryBtn {
-    padding: 8px 20px;
-    font-weight: 600;
+    padding: 10px 20px;
     color: white;
     border-radius: 8px;
     background-color: #0088ff;
@@ -188,8 +189,7 @@
 
 .editProfileBtn {
     margin-left: 10px;
-    padding: 8px 20px;
-    font-weight: 600;
+    padding: 10px 20px;
     color: #559;
     border-radius: 8px;
     background-color: #eeeef9;

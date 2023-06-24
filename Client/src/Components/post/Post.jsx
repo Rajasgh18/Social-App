@@ -47,7 +47,7 @@ export default function Post(props) {
     }, [userId]);
 
     return (
-        <div className='postWrapper' style={profileUrlChecker ? { width: "100%" } : {}}>
+        <div className='postWrapper feedAnim' style={profileUrlChecker ? { width: "100%" } : {}}>
             <div className='postTop'>
                 <div className="postTopLeft">
                     <Link to={`profile/${userId}`}><img src={profilePic} alt="" className='postProfile' /></Link>

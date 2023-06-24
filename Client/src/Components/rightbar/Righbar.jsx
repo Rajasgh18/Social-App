@@ -4,8 +4,9 @@ import Friends from '../friends/Friends';
 import Online from '../online/Online';
 
 import userContext from '../../Context/UserContext/userContext';
-import React, { useContext, useEffect, useId, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
+import { TailSpin } from 'react-loader-spinner';
 
 function Rightbar() {
 
@@ -14,15 +15,16 @@ function Rightbar() {
     const [onlineFriends, setOnlineFriends] = useState([]);
     const { followers } = mainUser;
 
+
     const socket = useRef();
 
-    useEffect(()=>{
+    useEffect(() => {
         socket.current = io("ws://localhost:8900");
         socket.current.on("getUsers", users => {
             users.filter(e => e.userId !== userId);
             setOnlineFriends(users.filter(e => e.userId !== userId));
         })
-    },[])
+    }, [])
 
 
     return (
@@ -36,7 +38,7 @@ function Rightbar() {
                     <div className="rightbarBottom">
                         <h2 className="rightbarHeadings">Active Friends</h2>
                         {onlineFriends.length !== 0 ? onlineFriends.map((f) => {
-                            return <Online key={f} user={f.userId} />;
+                            return <Online key={f} id={f.userId} />;
                         }) : <span className='inactive'>No friends are active</span>}
                     </div>
                 </div>

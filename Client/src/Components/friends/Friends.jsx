@@ -1,23 +1,23 @@
 import './friends.css'
 
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {TailSpin} from 'react-loader-spinner';
+import UserContext from '../../Context/UserContext/userContext';
 
 export default function Friends({ user }) {
 
-    const host = "http://localhost:5000";
     const userId = localStorage.getItem("userId");
-    const navigate = useNavigate();
+    const {mode, host, Navigate} = useContext(UserContext);
 
     const [currUser, setCurrUser] = useState("");
-    const { profilePicture, username } = currUser;
-
-    const profilePic = `/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`;
+    const { profilePicture, name } = currUser;
 
     const profileUrlChecker = window.location.href.indexOf("profile") !== -1;
     const messageUrlChecker = window.location.href.indexOf("messages") !== -1;
+    const [isLoader, setIsLoader] = useState(true);
 
     const friendBoxImg = {
         width: "80px",
@@ -37,7 +37,7 @@ export default function Friends({ user }) {
         } catch (err) {
             console.log(err);
         }
-        navigate("/messages");
+        Navigate("/messages");
     }
 
     //Fetches friends details into curruser variable.
@@ -46,6 +46,7 @@ export default function Friends({ user }) {
             try {
                 const response = await axios(`${host}/api/users/${user}`);
                 setCurrUser(response.data);
+                setIsLoader(false);
             } catch (error) {
                 console.log(error);
             }
@@ -55,13 +56,13 @@ export default function Friends({ user }) {
 
     return (
         <>
-            <div onClick={handleClick} className={`friendContainer ${messageUrlChecker ? "friendContainerMessages clickDisable" : ""}`} style={profileUrlChecker ? { flexDirection: "column" } : {}} >
-                <img src={profilePic} alt="" style={profileUrlChecker ? friendBoxImg : {}} className={`friendProfile ${messageUrlChecker ? "friendProfileMessages" : ""}`} />
+            {!isLoader ? <div onClick={handleClick} className={`friendContainer ${messageUrlChecker ? "friendContainerMessages clickDisable" : ""} ${profileUrlChecker ? "flex-col w-full h-full hover:bg-transparent" : ""}`} >
+                <img src={`/Assets/Posts/${profilePicture ? profilePicture : "userIcon.webp"}`} alt="" style={profileUrlChecker ? friendBoxImg : {}} className={`friendProfile ${messageUrlChecker ? "friendProfileMessages" : ""}`} />
                 <div className='friendDetail'>
-                    <span className="friendUsername">{username ? username : "none"}</span>
+                    <span className="friendUsername">{name ? name : "none"}</span>
                     {messageUrlChecker && <span className='profileMessages'>Hello!</span>}
                 </div>
-            </div>
+            </div> : <div className='flex w-full justify-center'><TailSpin height={25} width={25} color={mode === "light" ? "blue" : "white"} /></div>}
         </>
     )
 }

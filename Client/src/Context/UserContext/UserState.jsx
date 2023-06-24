@@ -10,6 +10,7 @@ export default function UserState(props) {
     const [mainUser, setMainUser] = useState(mainUserInitial);
     const [user, setUser] = useState("");
     const [friend, setFriend] = useState(friendInitial);
+    const [isUpdate, setIsUpdated] = useState(false);
     const userId = localStorage.getItem('userId');
     const getUser = async (id) => {
         const response = await fetch(`${host}/api/users/${id}`, {
@@ -94,7 +95,7 @@ export default function UserState(props) {
     }
     const [mode, setMode] = useState("light");
     return (
-        <UserContext.Provider value={{ mode, setMode, host, Navigate, createUser, loginUser, mainUser, setMainUser, getMainUser, user, getUser, friend, getFriend, updateUserCoverPicture, updateUserProfilePicture }} >
+        <UserContext.Provider value={{ isUpdate, setIsUpdated, mode, setMode, host, Navigate, createUser, loginUser, mainUser, setMainUser, getMainUser, user, getUser, friend, getFriend, updateUserCoverPicture, updateUserProfilePicture }} >
             {props.children}
         </UserContext.Provider>
     )

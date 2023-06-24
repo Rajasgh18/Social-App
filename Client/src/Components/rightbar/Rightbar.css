@@ -11,6 +11,7 @@
     right: 0;
     background-color: var(--primary-background);
     box-shadow: 0px 0px 10px 0px var(--secondary-box-shadow);
+    animation: rightAppear 0.4s ease-in-out;
 }
 
 .rightbarWrapper:hover {

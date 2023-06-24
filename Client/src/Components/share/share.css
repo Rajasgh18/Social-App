@@ -1,26 +1,26 @@
 .share {
-    padding: 10px 15px;
+    padding: 15px 20px;
     width: 50%;
     background-color: var(--primary-background);
     box-shadow: 0px 0px 10px 0px var(--secondary-box-shadow);
-    display: flex;
+    display: none;
     border-radius: 8px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .shareTop {
+    gap: 6px;
     display: flex;
     align-items: center;
     margin: 10px 0px;
 }
 
 .shareTop input {
-    height: 50px;
     width: 100%;
-    border-radius: 25px;
-    padding: 0px 15px;
+    font-size: 18px;
+    border-radius: 12px;
+    padding: 10px 12px;
     background-color: #eeeef9;
 }
 

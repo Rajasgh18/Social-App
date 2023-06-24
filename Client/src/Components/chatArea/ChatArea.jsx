@@ -118,8 +118,8 @@ export default function ChatArea({ currChat }) {
             <div className='chatAreaWrapper'>
                 <div className='chatAreaHead'>
                     <div className='chatAreaHeadLeft'>
-                        <img src={profilePic} alt='' />
-                        <span>{currUser.username}</span>
+                        <img src={`/Assets/Posts/${currUser.profilePicture}`} alt='' />
+                        <span>{currUser.name}</span>
                     </div>
                     <div className='chatAreaHeadRight'>
                         <PhoneIcon className='chatAreaHeadIcon' />
@@ -129,7 +129,7 @@ export default function ChatArea({ currChat }) {
                 </div>
                 <div className="chatBox">
                     {messages && messages.map(m => {
-                        return <div ref={scrollRef}><Message key={m._id} message={m} user={currUser} own={m.senderId === userId} /></div>
+                        return <div key={m._id} ref={scrollRef}><Message message={m} user={currUser} own={m.senderId === userId} /></div>
                     })}
                 </div>
                 <span></span>

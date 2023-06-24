@@ -36,3 +36,54 @@ body::-webkit-scrollbar-track {
   --hover-color: #eaeafa;
   --hover-feed-color: #eaeafa;
 }
+
+.feedAnim{
+  animation : leftAppear 400ms ease-in-out;
+  animation-delay: calc(1ms * var(--i));
+}
+
+@keyframes leftAppear{
+  from{
+      transform: translateX(-20%);
+      opacity: 0;
+  }
+  to{
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+@keyframes rightAppear{
+  from{
+      transform: translateX(20%);
+      opacity: 0;
+  }
+  to{
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+.popupAppear{
+  animation: topAppear 300ms ease-in-out;
+}
+
+@keyframes topAppear{
+  from{
+      transform: translateY(-10%);
+      opacity: 0;
+  }
+  to{
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+@keyframes bottomDisappear{
+  from{
+      transform: translateY(0);
+      opacity:  1;
+  }
+  to{
+      transform: translateY(-10%);
+      opacity: 0;
+  }
+}

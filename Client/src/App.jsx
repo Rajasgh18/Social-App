@@ -109,6 +109,7 @@ const App = () => {
     // eslint-disable-next-line
   }, [authToken, mode])
 
+
   return (
     <>
       {!isLoader ? <Routes>

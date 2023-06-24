@@ -13,15 +13,15 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 
 import userContext from '../../Context/UserContext/userContext';
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import SearchResult from '../SearchResult';
 
 function Navbar() {
-
-    const navigate = useNavigate();
 
     const { mainUser, mode, setMode } = useContext(userContext);
     const { profilePicture, name } = mainUser;
     const profilePic = profilePicture ? `/Assets/Posts/${profilePicture}` : "/Assets/Posts/userIcon.webp";
+    const [input, setInput] = useState('');
 
     //Logout function which token and userId from the localstorage.
     const handleClick = () => {
@@ -38,7 +38,12 @@ function Navbar() {
         element.style.display = "flex";
         document.addEventListener('mouseup', function (e) {
             if (!container.contains(e.target)) {
-                element.style.display = "none";
+                element.style.animation = 'bottomDisappear 0.3s ease-in-out'
+                setTimeout(() => {
+                    element.style.display = "none";
+                }, 250);
+            }else{
+                element.style.animation = 'topAppear 0.3s ease-in-out'
             }
         });
     }
@@ -74,6 +79,10 @@ function Navbar() {
         }
     }, [mode])
 
+    const handleSearch = async (e) => {
+        setInput(e.target.value);
+    }
+
     return (
         <div className='navbar' style={navBack}>
             <div className='logoDiv'>
@@ -82,9 +91,12 @@ function Navbar() {
                     <h2 style={navHead}>ingbook</h2>
                 </Link>
             </div>
-            <div className='middleContainer'>
-                <SearchIcon className='searchIcon' />
-                <input type="text" placeholder='Search Kingbook' />
+            <div className='flex flex-col w-1/4'>
+                <div className='w-full flex gap-1 bg-[#eeeef9] items-center p-1 px-2 rounded-xl'>
+                    <SearchIcon className='text-[#6161dd]' style={{ height: "1.5rem", width: "1.5rem" }} />
+                    <input value={input} onChange={handleSearch} className='w-full bg-transparent focus:outline-none text-lg text-slate-700' type="text" placeholder='Search Kingbook' />
+                </div>
+                {input && <SearchResult searchQuery={input} setSearchQuery={setInput} />}
             </div>
             <div className='rightContainer'>
                 <div className='rightContainerItem' style={navIcon} onClick={handleMode} >{mode === "light" ? <DarkModeIcon style={navIcon} className='rightContainerIcon' /> : <LightModeIcon style={navIcon} className='rightContainerIcon' />}</div>
@@ -92,7 +104,7 @@ function Navbar() {
                 <div className='rightContainerItem' style={navIcon}><NotificationsActiveIcon style={navIcon} className='rightContainerIcon' /><span>1</span></div>
                 <div onClick={handleProfile} id="profileMenu" className='rightContainerItem' style={navIcon}>
                     <button ><img className='profileIcon' src={profilePic} alt="" /></button>
-                    <div id='hideMe' className='profileContainer'>
+                    <div id='hideMe' className='profileContainer popupAppear'>
                         <div style={navBack} >
                             <li>
                                 <img className='profileIcon' alt='' src={profilePic} />

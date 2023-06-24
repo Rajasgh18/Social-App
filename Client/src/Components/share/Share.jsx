@@ -17,7 +17,7 @@ export default function Share() {
     const userId = localStorage.getItem('userId');
 
 
-    const { username, profilePicture } = mainUser;
+    const { name, profilePicture } = mainUser;
 
     const [file, setFile] = useState(null)
     const desc = useRef()
@@ -52,15 +52,14 @@ export default function Share() {
             } catch (error) {
                 console.log(error);
             }
-
         }
     }
 
     return (
-        <form className='share' style={profileUrlChecker ? { width: "100%" } : { marginTop: "15px" }} onSubmit={handleSubmit}>
+        <form className='share hidden feedAnim' style={profileUrlChecker ? { width: "100%", '--i': 200 } : { '--i': 200 }} onSubmit={handleSubmit}>
             <div className="shareTop">
                 <div className='shareTopItem'><img src={profilePic} alt="" className='shareTopIcon' /></div>
-                <input type="text" ref={desc} placeholder={`What's on your mind, ${username}?`} />
+                <input type="text" ref={desc} placeholder={`What's on your mind, ${name}?`} />
             </div>
             <div className="shareBottom">
                 <div className="shareBottomItems">

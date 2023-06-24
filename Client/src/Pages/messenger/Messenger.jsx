@@ -58,7 +58,7 @@ export default function Messenger() {
                         <div className='friendHeader'><h2>Messages</h2></div>
                         <div className='friendListContainer'>
                             {conversations.map(f => {
-                                return <div className='chatFriend' onClick={() => { setCurrChat(f) }}><Friends setCurrChat={setCurrChat} currChat={currChat} key={f._id} user={f.members.find(m => m !== userId)} /></div>
+                                return <div key={f._id} className='chatFriend' onClick={() => { setCurrChat(f) }}><Friends setCurrChat={setCurrChat} currChat={currChat} user={f.members.find(m => m !== userId)} /></div>
                             })}
                         </div>
                     </div>

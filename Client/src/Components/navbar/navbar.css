@@ -27,39 +27,6 @@
     cursor: default;
 }
 
-.middleContainer {
-    flex: 4;
-    height: 40px;
-    background-color: #eeeef9;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-}
-
-.middleContainer:hover {
-    background-color: #e5e5f5;
-}
-
-.searchIcon {
-    height: 25px !important;
-    width: 25px !important;
-    margin-left: 10px;
-    color: #559;
-    cursor: pointer;
-}
-
-.middleContainer input {
-    width: 90%;
-    margin-left: 3px;
-    background-color: transparent;
-    color: #559;
-    font-size: 18px;
-}
-
-.middleContainer input:focus {
-    outline: none;
-}
-
 .rightContainer {
     flex: 4;
     display: flex;

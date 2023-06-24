@@ -67,9 +67,19 @@ function Feed() {
         fetchPosts();
     }, []);
 
+    useEffect(()=>{
+        const feedAnim = document.getElementsByClassName('feedAnim');
+        Array.from(feedAnim).forEach((el, index) => {
+          const delay = index * 100;
+          el.style.display = 'flex';
+          el.style.animation = `leftAppear 400ms ease-in-out`;
+          el.style.animationDelay = `${delay}ms`;
+        })
+      }, []);
+
     return (
         <div className='feed'>
-            <div className='feedWrapper'>
+            <div className='feedWrapper hidden feedAnim' style={{'--i': 100}}>
                 <div className='feedUpper'>
                     <button className='story' onClick={handleClick}><ImportContactsIcon className='feedWrapperIcon' /><span >Story</span><hr className='feedUpperActive' /></button>
                     <button className='reels' onClick={handleClick}><LiveTvIcon className='feedWrapperIcon' /><span >Reels</span></button>

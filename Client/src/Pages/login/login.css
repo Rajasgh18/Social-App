@@ -40,10 +40,10 @@
 }
 
 .loginWrapper input {
-    font-size: 25px;
-    padding: 4px 8px;
+    font-size: 22px;
+    padding: 6px 8px;
     width: 100%;
-    color: #9e1afe;
+    color: #559;
     margin: 10px 0;
     border-radius: 8px;
 }
